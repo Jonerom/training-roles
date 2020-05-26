@@ -1,0 +1,17 @@
+- hosts: all
+#  strategy: free
+  tasks:
+    - name: Rhel Upgrade
+      yum:  
+        name: '*'
+        state: latest
+        update_cache: true
+#      become: true
+      when: ansible_os_family == 'RedHat'
+
+    - name: Debian Upgrade
+      apt:  
+        upgrade: safe
+        update_cache: true
+#      become: true
+      when: ansible_os_family == 'Debian'

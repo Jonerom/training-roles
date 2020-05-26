@@ -1,0 +1,5 @@
+- hosts: all
+  tasks:
+  - name: Update all
+    include: "do-upgrade-{{ ansible_os_family | lower }}.yaml"
+    become: yes

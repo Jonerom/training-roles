@@ -1,0 +1,20 @@
+- hosts: all
+  become: yes
+  vars:
+    usuarios:
+      - operador1
+      - operador2
+      - operador3
+  tasks:
+    - name: test
+      file:
+        path: /home/{{ item }}/.ssh/id_ed25519
+        state: absent
+        force: yes
+      with_items: "{{ usuarios }}"
+    - name: test
+      file:
+        path: /home/{{ item }}/.ssh/id_ed25519.pub
+        state: absent
+        force: yes
+      with_items: "{{ usuarios }}"
